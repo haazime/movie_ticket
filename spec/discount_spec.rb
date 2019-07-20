@@ -205,32 +205,32 @@ describe 'Discount' do
         it { is_expected.to eq(Discount.new(800)) }
       end
 
-      xcontext '20:00~' do
+      context '20:00~' do
         let(:at) { ScreeningAt.parse('2019-07-10 20:15') }
-        it { is_expected.to eq(Discount.new(500)) }
+        it { is_expected.to eq(Discount.new(800)) }
       end
     end
 
     context '土日祝' do
-      xcontext '~20:00' do
+      context '~20:00' do
         let(:at) { ScreeningAt.parse('2019-07-13 15:30') }
-        it { is_expected.to eq(Discount.new(300)) }
+        it { is_expected.to eq(Discount.new(800)) }
       end
 
-      xcontext '20:00~' do
+      context '20:00~' do
         let(:at) { ScreeningAt.parse('2019-07-13 20:15') }
-        it { is_expected.to eq(Discount.new(500)) }
+        it { is_expected.to eq(Discount.new(800)) }
       end
     end
 
-    xcontext '映画の日（平日）' do
+    context '映画の日（平日）' do
       let(:at) { ScreeningAt.parse('2019-07-01 15:30') }
-      it { is_expected.to eq(Discount.new(700)) }
+      it { is_expected.to eq(Discount.new(800)) }
     end
 
-    xcontext '映画の日（土日祝）' do
+    context '映画の日（土日祝）' do
       let(:at) { ScreeningAt.parse('2019-06-01 15:30') }
-      it { is_expected.to eq(Discount.new(700)) }
+      it { is_expected.to eq(Discount.new(800)) }
     end
   end
 end
