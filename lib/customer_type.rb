@@ -6,6 +6,7 @@ require 'customer_type/high_and_junior_hight_school_student'
 require 'customer_type/child'
 require 'customer_type/handicapped'
 require 'customer_type/mi_card'
+require 'customer_type/park80'
 
 module CustomerType
 end

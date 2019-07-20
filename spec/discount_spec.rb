@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'movie_ticket'
 
-describe 'Discount' do
+describe '割引' do
   subject do
     customer_type.discount(at)
   end
@@ -372,6 +372,44 @@ describe 'Discount' do
       context '20:00~' do
         let(:at) { ScreeningAt.parse('2019-07-13 20:15') }
         it { is_expected.to eq(Discount.new(500)) }
+      end
+    end
+
+    context '映画の日（平日）' do
+      let(:at) { ScreeningAt.parse('2019-07-01 15:30') }
+      it { is_expected.to eq(Discount.none) }
+    end
+
+    context '映画の日（土日祝）' do
+      let(:at) { ScreeningAt.parse('2019-06-01 15:30') }
+      it { is_expected.to eq(Discount.none) }
+    end
+  end
+
+  context '駐車場パーク80' do
+    let(:customer_type) { CustomerType::Park80.new }
+
+    context '平日' do
+      context '~20:00' do
+        let(:at) { ScreeningAt.parse('2019-07-10 15:30') }
+        it { is_expected.to eq(Discount.new(400)) }
+      end
+
+      context '20:00~' do
+        let(:at) { ScreeningAt.parse('2019-07-10 20:15') }
+        it { is_expected.to eq(Discount.new(700)) }
+      end
+    end
+
+    context '土日祝' do
+      context '~20:00' do
+        let(:at) { ScreeningAt.parse('2019-07-13 15:30') }
+        it { is_expected.to eq(Discount.new(400)) }
+      end
+
+      context '20:00~' do
+        let(:at) { ScreeningAt.parse('2019-07-13 20:15') }
+        it { is_expected.to eq(Discount.new(700)) }
       end
     end
 
