@@ -6,7 +6,10 @@ module CustomerType
       end
     end
 
-    class UnderHighSchool
+    class UnderHighSchoolStudent
+      def discount(screening_at)
+        Discount.new(900)
+      end
     end
   end
 end
