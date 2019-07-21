@@ -1,4 +1,8 @@
-module SoundType
-  Normal = :sound_type__normal
-  Explosion = :sound_type__explosion
+class SoundType < Struct.new(:value)
+  Normal = new(:normal)
+  Explosion = new(:explosion)
+
+  def explosion?
+    value == :explosion
+  end
 end

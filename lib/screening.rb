@@ -6,11 +6,11 @@ class Screening
   end
 
   def day_type(customer_type)
-    @screening_at.day_type(customer_type)
+    customer_type.day_type(@screening_at)
   end
 
   def show_type
-    return ShowType::Normal if @sound_type == SoundType::Explosion
-    @screening_at.show_type
+    return ShowType::Normal if @sound_type.explosion?
+    @screening_at.to_show_type
   end
 end
