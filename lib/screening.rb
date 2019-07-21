@@ -9,8 +9,19 @@ class Screening
     customer_type.day_type(@screening_at)
   end
 
-  def show_type
-    return ShowType::Normal if @sound_type.explosion?
-    @screening_at.to_show_type
+  def show_type(customer_type)
+    if customer_type == CustomerType::MICard
+      show_type_with_explosion
+    else
+      return nil if @screening_at.day_of_cinema?
+      show_type_with_explosion
+    end
   end
+
+  private
+
+    def show_type_with_explosion
+      return ShowType::Normal if @sound_type.explosion?
+      @screening_at.to_show_type
+    end
 end

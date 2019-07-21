@@ -5,7 +5,7 @@ module FeeRule
       Fee.new(
         customer_type,
         screening.day_type(customer_type),
-        screening.show_type
+        screening.show_type(customer_type)
       )
     end
   end

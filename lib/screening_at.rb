@@ -20,7 +20,6 @@ class ScreeningAt
   end
 
   def to_show_type
-    return nil if day_of_cinema?
     return ShowType::Late if late?
     ShowType::Normal
   end
