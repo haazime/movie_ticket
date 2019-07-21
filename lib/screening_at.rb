@@ -29,6 +29,10 @@ class ScreeningAt
     @date.day == 1
   end
 
+  def weekday?
+    !holiday?
+  end
+
   def holiday?
     [6, 7].include?(@date.cwday)
   end
