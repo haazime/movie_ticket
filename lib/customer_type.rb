@@ -1,16 +1,17 @@
 class CustomerType < Struct.new(:value)
   General = new(:general)
   CinemaCitizen = new(:cinema_citizen)
+  CinemaCitizenOver60 = new(:cinema_citizen_over60)
 
   def day_type(screening_at)
-    if cinema_citizen?
+    if cinema_citizen_under59?
       day_type_for_cinema_citizen(screening_at)
     else
       screening_at.to_day_type
     end
   end
 
-  def cinema_citizen?
+  def cinema_citizen_under59?
     value == :cinema_citizen
   end
 
