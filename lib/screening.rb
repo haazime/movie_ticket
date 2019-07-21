@@ -10,7 +10,7 @@ class Screening
   end
 
   def show_type(customer_type)
-    if customer_type == CustomerType::MICard
+    if [CustomerType::MICard, CustomerType::Park80].include?(customer_type)
       show_type_with_explosion
     else
       return nil if @screening_at.day_of_cinema?

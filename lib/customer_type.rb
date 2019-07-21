@@ -1,6 +1,6 @@
 require 'customer_type/base'
 require 'customer_type/cinema_citizen_class'
-require 'customer_type/mi_card_holder_class'
+require 'customer_type/without_day_of_cinema'
 
 module CustomerType
   General = Base.new(:general)
@@ -12,5 +12,6 @@ module CustomerType
   Child = Base.new(:child)
   Handicapped = Base.new(:handicapped)
   HandicappedUnderHighSchoolStudent = Base.new(:handicapped_under_high_school_student)
-  MICard = MICardClass.new(:mi_card)
+  MICard = WithoutDayOfCinema.new(:mi_card)
+  Park80 = WithoutDayOfCinema.new(:park80)
 end

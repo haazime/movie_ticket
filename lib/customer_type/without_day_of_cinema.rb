@@ -1,5 +1,5 @@
 module CustomerType
-  class MICardClass < Base
+  class WithoutDayOfCinema < Base
 
     def day_type(screening_at)
       if screening_at.day_of_cinema?
