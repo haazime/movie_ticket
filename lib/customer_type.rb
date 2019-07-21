@@ -8,4 +8,5 @@ module CustomerType
   Senior = Base.new(:senior)
   Student = Base.new(:student)
   HighAndJuniorHighSchoolStudent = Base.new(:high_and_junior_high_school_student)
+  Child = Base.new(:child)
 end
