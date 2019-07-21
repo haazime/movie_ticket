@@ -3,8 +3,7 @@ module CustomerType
 
     def day_type(screening_at)
       if screening_at.day_of_cinema?
-        return DayType::Holiday if screening_at.holiday?
-        DayType::Weekday
+        screening_at.to_day_type_ignore_cinema_of_day
       else
         screening_at.to_day_type
       end

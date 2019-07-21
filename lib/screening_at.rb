@@ -15,13 +15,12 @@ class ScreeningAt
 
   def to_day_type
     return DayType::DayOfCinema if day_of_cinema?
-    return DayType::Holiday if holiday?
-    DayType::Weekday
+    to_day_type_ignore_cinema_of_day
   end
 
-  def to_show_type
-    return ShowType::Late if late?
-    ShowType::Normal
+  def to_day_type_ignore_cinema_of_day
+    return DayType::Holiday if holiday?
+    DayType::Weekday
   end
 
   def day_of_cinema?

@@ -22,6 +22,7 @@ class Screening
 
     def show_type_with_explosion
       return ShowType::Normal if @sound_type.explosion?
-      @screening_at.to_show_type
+      return ShowType::Late if @screening_at.late?
+      ShowType::Normal
     end
 end
