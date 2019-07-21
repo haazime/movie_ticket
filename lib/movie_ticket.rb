@@ -1,0 +1,8 @@
+require 'screening'
+require 'customer_type'
+require 'screening_at'
+require 'sound_type'
+require 'fee_rule'
+require 'fee'
+require 'day_type'
+require 'show_type'
