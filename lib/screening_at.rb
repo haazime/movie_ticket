@@ -4,9 +4,7 @@ class ScreeningAt
   class << self
     def parse(string)
       datetime = Time.parse(string)
-      date = datetime.to_date
-      hour = datetime.hour
-      new(date, hour)
+      new(datetime.to_date, datetime.hour)
     end
   end
 
@@ -15,15 +13,42 @@ class ScreeningAt
     @time = hour
   end
 
-  def day_of_cinema?
-    @date.day == 1
+  def day_type(customer_type)
+    if customer_type == CustomerType::CinemaCitizen
+      if day_of_cinema?
+        if holiday?
+          DayType::DayOfCinema
+        else
+          DayType::Weekday
+        end
+      else
+        return DayType::Holiday if holiday?
+        DayType::Weekday
+      end
+    else
+      return DayType::DayOfCinema if day_of_cinema?
+      return DayType::Holiday if holiday?
+      DayType::Weekday
+    end
   end
 
-  def holiday?
-    [6, 7].include?(@date.cwday)
+  def show_type
+    return nil if day_of_cinema?
+    return ShowType::Late if late?
+    ShowType::Normal
   end
 
-  def late?
-    @time >= 20
-  end
+  private
+
+    def day_of_cinema?
+      @date.day == 1
+    end
+
+    def holiday?
+      [6, 7].include?(@date.cwday)
+    end
+
+    def late?
+      @time >= 20
+    end
 end
