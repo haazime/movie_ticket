@@ -9,4 +9,6 @@ module CustomerType
   Student = Base.new(:student)
   HighAndJuniorHighSchoolStudent = Base.new(:high_and_junior_high_school_student)
   Child = Base.new(:child)
+  Handicapped = Base.new(:handicapped)
+  HandicappedUnderHighSchoolStudent = Base.new(:handicapped_under_high_school_student)
 end
